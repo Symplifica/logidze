@@ -14,6 +14,10 @@ module Logidze
       META_RESPONSIBLE = "_r"
       # Meta key
       META = "m"
+      # Meta Responsible Kind
+      META_RESPONSIBLE_KIND = "_rk"
+      # Responsible Kind
+      RESPONSIBLE_KIND = "rk"
 
       attr_reader :data
 
@@ -35,6 +39,10 @@ module Logidze
 
       def responsible_id
         meta && meta[META_RESPONSIBLE] || data[RESPONSIBLE]
+      end
+
+      def responsible_kind
+        meta && meta[META_RESPONSIBLE_KIND] || data[RESPONSIBLE_KIND]
       end
 
       def meta

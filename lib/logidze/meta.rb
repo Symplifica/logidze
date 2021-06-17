@@ -15,6 +15,13 @@ module Logidze # :nodoc:
       with_meta(meta, transactional: transactional, &block)
     end
 
+    def with_responsible_kind(responsible, transactional: true, &block)
+      return yield if responsible.nil?
+
+      meta = {Logidze::History::Version::META_RESPONSIBLE => responsible.id, META_RESPONSIBLE_KIND => responsible.class.name}
+      with_meta(meta, transactional: transactional, &block)
+    end
+
     class MetaWrapper # :nodoc:
       def self.wrap_with(meta, &block)
         new(meta, &block).perform
